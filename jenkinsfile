@@ -1,0 +1,16 @@
+pipeline{
+    agent{ label 'agent-python' }
+    stages{
+        stage('Checkout'){
+            steps{
+                git branch: 'main', url: 'https://github.com/fredericEducentre/jenkins_test_python.git'
+            }
+        }
+        
+        stage('Test'){
+            steps{
+                sh 'python3 -m unittest test/test_calculatrice.py'
+            }
+        }
+    }
+}
